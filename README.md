@@ -47,24 +47,24 @@ In addition to this, three more folders are provided:
 
 To load the [NPM](https://www.npmjs.com/) components needed by the main application, enter the `/app` directory and launch:
 
-```
+```bash
 # Go to your checklist folder:
-host> cd path/to/checklist
+$ cd path/to/checklist
 
 # Go to the 'app' folder and install required components
-host> cd app
-host> npm install
+$ cd app
+$ npm install
 ```
 
 The same process should be done with the socket server:
 
-```
+```bash
 # Go to your checklist folder:
-host> cd path/to/checklist
+$ cd path/to/checklist
 
 # Go to the 'socketsrv' folder and install required components
-host> cd socketsrv
-host> npm install
+$ cd socketsrv
+$ npm install
 ```
 
 ### Common operations
@@ -72,17 +72,17 @@ host> npm install
 From here, the most usual operations are:
 
 #### Start the socket server:
-```
-host> cd path/to/checklist
-host> cd socketsrv
-host> SOCKET_PORT=8000 DEBUG=chklist node index.js
+```bash
+$ cd path/to/checklist
+$ cd socketsrv
+$ SOCKET_PORT=8000 DEBUG=chklist node index.js
 ```
 
 #### Launch the development server:
-```
-host> cd path/to/checklist
-host> cd app
-host> npm start
+```bash
+$ cd path/to/checklist
+$ cd app
+$ npm start
 ```
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -91,10 +91,10 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 #### Build the main application:
-```
-host> cd path/to/checklist
-host> cd app
-host> npm run build
+```bash
+$ cd path/to/checklist
+$ cd app
+$ npm run build
 ```
 Builds the app for production to the `/app/build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.

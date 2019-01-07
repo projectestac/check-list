@@ -3,6 +3,9 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
+/**
+ * Login page
+ */
 class Login extends React.Component {
 
   state = {
@@ -13,6 +16,7 @@ class Login extends React.Component {
   };
 
   handleChange = name => ev => {
+    // Filter non-numeric keystrokes
     if (name === 'centre' && (ev.target.value.split('').find(ch => '0123456789'.indexOf(ch) < 0) || ev.target.value.length > 8)) {
       ev.preventDefault();
       return;
@@ -27,15 +31,15 @@ class Login extends React.Component {
   handleBtnClick = ev => {
     ev.preventDefault();
 
-    // Comprova que el codi d ecentre tingui 8 caràcters
+    // Check that the schhol code has 8 characters
     if (this.state.centre.length !== 8) 
       return this.setState({ centre_err: true });
 
-    // Comprova que la contrasenya no estigui buida
+    // Check empty password
     if (!this.state.pwd)
       return this.setState({ pwd_err: true });
 
-    // Notifica que s'ha fet el login
+    // Notify that the login form is ready to fetch
     this.props.onLogin(this.state.centre, this.state.pwd);
   }
 
@@ -86,7 +90,7 @@ class Login extends React.Component {
             Aquest assistent està en fase de proves i no té cap connexió directa amb els proveïdors de serveis.
             Tingueu en compte que l'aplicació no es troba encara integrada en el conjunt d'aplicacions
             oficials del Departament d'Educació i no entra en els canals de suport del SAU. Per a qualsevol dubte o
-            incidència relacionada amb aquesta aplicació podeu escriure a: <a href="mailto:areatac.ensenyament@gencat.cat">areatac.ensenyament@gencat.cat</a>.
+            incidència relacionada amb aquesta aplicació podeu escriure a: <a href="mailto:areatac.educacio@gencat.cat">areatac.educacio@gencat.cat</a>.
           </p><p>
             La introducció de dades a l'assistent no substitueix la necessària signatura dels albarans de lliurament
             i prestació de serveis de les empreses subminstradores.

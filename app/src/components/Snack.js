@@ -5,6 +5,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import WarningIcon from '@material-ui/icons/Warning';
 
+/**
+ * Displays a "snack bar", usually with a warning message
+ */
 class Snack extends React.Component {
   state = {
     message: '',

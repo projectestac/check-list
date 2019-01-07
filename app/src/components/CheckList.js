@@ -4,6 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Product from './Product';
 import Summary from './Summary';
 
+/**
+ * This React Component fills the main area with a Summary and the collection of Product components
+ */
 class CheckList extends React.Component {
 
   constructor(props) {
@@ -33,4 +36,3 @@ class CheckList extends React.Component {
 }
 
 export default CheckList;
-

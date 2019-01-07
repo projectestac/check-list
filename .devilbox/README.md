@@ -10,7 +10,7 @@ To set-up the development services for CheckList with DevilBox:
 
 - Define a variable named `HOST_PATH_RELATIVE_DATADIR` in your `.env` file, pointing to the relative path (from `$HOME`) to your development folder. Both Devilbox and CheckList should be located in this folder. For example, set this if you have Devilbox and your developmet projects placed in `~/dev`:
 
-```
+```yaml
 ### Local filesystem path to projects relative to $HOME/, to be used for symbolic links
 HOST_PATH_RELATIVE_DATADIR=dev
 ```
@@ -21,41 +21,41 @@ HOST_PATH_RELATIVE_DATADIR=dev
 
 - Inside your Devilbox `cfg/apache-2.4` folder, create the following symlink (replacing `/path/to/your/checklist/folder/` with the absolute path in your system):
 
-```
+```bash
 # Go to your Devilbox folder:
-host> cd path/to/devilbox
+$ cd path/to/devilbox
 
 # Go to the Apache 2.4 configuration folder:
-host> cd cfg/apache-2.4
+$ cd cfg/apache-2.4
 
 # Create a symlink to this absolute path:
-host> ln -s /path/to/your/checklist/folder/.devilbox/cfg/apache-2.4/proxy-wstunnel.conf .
+$ ln -s /path/to/your/checklist/folder/.devilbox/cfg/apache-2.4/proxy-wstunnel.conf .
 ```
 
 - Create a directory for checklist into your Devilbox `data/www` folder and define the following softlinks, replacing `/path/to/your/checklist/folder/` with the absolute path to this folder in your system:
 
-```
+```bash
 # Go to your Devilbox folder:
-host> cd path/to/devilbox
+$ cd path/to/devilbox
 
 # Create a directory for a new vhost named 'chklist'
-host> mkdir ./data/www/chklist
+$ mkdir ./data/www/chklist
 
 # Enter into the newly created folder and create three more symlinks: 
-host> cd ./data/www/chklist
-host> ln -s /path/to/your/checklist/folder/.devilbox/data/www/chklist/htdocs .
-host> ln -s /path/to/your/checklist/folder/socketsrv .
-host> ln -s /path/to/your/checklist/folder/.devilbox/data/www/chklist/.devilbox
+$ cd ./data/www/chklist
+$ ln -s /path/to/your/checklist/folder/.devilbox/data/www/chklist/htdocs .
+$ ln -s /path/to/your/checklist/folder/socketsrv .
+$ ln -s /path/to/your/checklist/folder/.devilbox/data/www/chklist/.devilbox
 ```
 
 - You can then launch your Devilbox. For the needs of this project, we will just need three services:
 
-```
+```bash
 # Go to your Devilbox folder:
-host> cd path/to/devilbox
+$ cd path/to/devilbox
 
 # Launch docker-compose with the required services:
-host> docker-compose up httpd php mysql
+$ docker-compose up httpd php mysql
 ```
 
 - You will also need to define `chklist.loc` into `/etc/hosts`, unless yoy have enabled the Devilbox's [auto DNS](https://devilbox.readthedocs.io/en/latest/intermediate/setup-auto-dns.html) feature.

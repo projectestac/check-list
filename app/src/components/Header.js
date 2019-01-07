@@ -1,6 +1,4 @@
 import React from 'react';
-
-// Components de material-ui
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,6 +13,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 
+/**
+ * Builds the app header, including a dynamic drawer containing links to all products
+ * of the current order, passed via `menuItems` property.
+ */
 class Header extends React.Component {
   state = {
     open: false
@@ -100,7 +102,6 @@ class Header extends React.Component {
           </Drawer>
         }
       </React.Fragment>
-
     );
   }
 }

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-// Tema
+// Theme
 import Utils from './utils/Utils';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
@@ -19,6 +19,9 @@ import Login from './components/Login';
 import CheckList from './components/CheckList';
 import Snack from './components/Snack';
 
+/**
+ * Main Material-UI theme
+ */
 const theme = createMuiTheme({
   palette: {
     primary: { main: color_primary[500] },
@@ -30,10 +33,17 @@ const theme = createMuiTheme({
   },
 });
 
+/**
+ * Miscellanous values taken from environment variables
+ * and from files: `.env`, `.env.development` and `.env.production`
+ */
 const API_ROOT = process.env.REACT_APP_API_ROOT || '../api';
 const CAMPAIGN = process.env.REACT_APP_CAMPAIGN || '';
 const UPDATE_INTERVAL = process.env.REACT_APP_UPDATE_INTERVAL || 5000;
 
+/**
+ * Main React component
+ */
 class App extends Component {
 
   constructor(props) {
@@ -41,6 +51,9 @@ class App extends Component {
     this.snack = React.createRef();
   }
 
+  /**
+   * Main data is stored in 'order'
+   */
   state = {
     loggedIn: false,
     loading: false,
@@ -49,6 +62,10 @@ class App extends Component {
     order: null,
   };
 
+  /**
+   * Checks if the current user is already logged in, sending the
+   * PHP cookie to the API
+   */
   checkIfLoggedIn = () => {
     this.setState({ loading: true });
 
@@ -70,6 +87,9 @@ class App extends Component {
       });
   }
 
+  /**
+   * Fetch a new login request
+   */
   checkLogin = (codi, pwd) => {
     this.setState({ loading: true });
 
@@ -87,6 +107,9 @@ class App extends Component {
       })
   }
 
+  /**
+   * Load order data for the current school and campaign
+   */
   loadOrder = (codi) => {
     this.setState({ centre: codi, loading: true });
     return Order.fetchOrder(codi, CAMPAIGN)
@@ -99,6 +122,9 @@ class App extends Component {
       });
   }
 
+  /**
+   * Closes the current session
+   */
   logout = () => {
     this.setState({ loading: true });
     return fetch(`${API_ROOT}/login/?clear=true`, {
@@ -113,27 +139,46 @@ class App extends Component {
       });
   }
 
+  /**
+   * Miscellaneous operations to be performed at startup
+   */
   componentDidMount() {
+    // Load Google's "Roboto" font
     Utils.loadGFont('Roboto');
+    // Check if the current user is already logged in
     this.checkIfLoggedIn();
+    // Prepare a warning message to be shown when leaving the app with unsaved data
     window.onbeforeunload = () => {
       if (Object.keys(this.updateBuffer).length > 0 && !this.processingBuffer) {
         this.processBuffer();
         return 'ATENCIÓ: Hi ha dades pendents de ser desades al servidor!';
       }
     }
+    // Prepare a queue processing cron
     window.setInterval(this.processBuffer, UPDATE_INTERVAL);
   }
 
+  /**
+   * Prepare a buffer for storing operations not yet processed by the API
+   */
   updateBuffer = {};
   processingBuffer = false;
 
+  /**
+   * Invoked when data related to some unit has been updated
+   */
   handleUpdateUnit = (unit) => {
     const {comanda, producte, num} = unit;
     const key = `${comanda}|${producte}|${num}`;
+    // Store changes on buffer, to be processed at the next time interval
     this.updateBuffer[key] = unit;
   }
 
+  /**
+   * Process pending transactions.
+   * This function is called at regular intervals,
+   * every `UPDATE_INTERVAL` seconds.
+   */
   processBuffer = () => {
     const keys = [...Object.keys(this.updateBuffer)];
     const { order } = this.state;
@@ -156,6 +201,9 @@ class App extends Component {
     }
   }
 
+  /**
+   * Build the main component
+   */
   render() {
     const { error, loading, loggedIn, order } = this.state;
 

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -13,6 +12,10 @@ import DoneAllIcon from '@material-ui/icons/DoneAll';
 import BlankIcon from '@material-ui/icons/List';
 import ErrorIcon from '@material-ui/icons/Warning';
 
+
+/**
+ * This component contains controls used to display and change the status of a specific unit:
+ */
 class Unit extends React.Component {
 
   state = { expanded: false };
@@ -31,7 +34,7 @@ class Unit extends React.Component {
     else
       unit.setAttribute(id, ev.target.value);
     this.setState({ expanded: this.state.expanded });
-    // Notify changes to the API
+    // Notify changes to main app
     updateUnit(unit);
   }
 

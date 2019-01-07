@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * Displays an horizontal bar segmented in different color areas, each one
+ * of a width proportional to its associated value.
+ * @param {object} props 
+ */
 function GraphBar(props) {
 
   const {

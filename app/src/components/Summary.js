@@ -11,6 +11,10 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import Divider from '@material-ui/core/Divider';
 
+/**
+ * This component shows a graphic and numeric resume of the global
+ * state of all checks, grouped by products and units.
+ */
 class Summary extends React.Component {
 
   constructor(props) {
@@ -29,7 +33,7 @@ class Summary extends React.Component {
     this.setState({ expanded: exp });
   }
 
-  handleBtnPrint = () => { 
+  handleBtnPrint = () => {
     const d = new Date();
     this.props.order.csvExportToFile(`${this.props.order.id}#${d.toLocaleString().replace(/(?:\/|:|, )/g, '-')}.csv`);
   }

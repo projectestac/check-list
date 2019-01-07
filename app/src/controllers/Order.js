@@ -3,18 +3,33 @@ import { Parser } from 'json2csv';
 import openSocket from 'socket.io-client';
 import Utils from '../utils/Utils';
 
+/**
+ * Miscellaneous constants used in this class
+ */
 const API_ROOT = process.env.REACT_APP_API_ROOT || '../api';
 const SOCKET_HOST = process.env.REACT_APP_SOCKET_HOST || window.location.hostname;
 const SOCKET_PORT = process.env.REACT_APP_SOCKET_PORT || window.location.port;
 const SOCKET_PROTOCOL = process.env.REACT_APP_SOCKET_PROTOCOL || window.location.protocol;
 const SOCKET_SERVER = `${SOCKET_PROTOCOL}//${SOCKET_HOST}:${SOCKET_PORT}`;
 
+/**
+ * Generic error-catch function, used in Promises
+ * @param {object} response 
+ */
 function handleErrors(response) {
   if (!response.ok)
     throw Error(response.statusText);
   return response;
 }
 
+/**
+ * Builds a [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) promise
+ * using URLSearchParams to format and encode the request body
+ * @param {string} url 
+ * @param {object} data 
+ * @param {string} method 
+ * @param {string} credentials 
+ */
 function fetchPost(url, data, method = 'POST', credentials = 'same-origin') {
   const body = new URLSearchParams();
   Object.keys(data).forEach(k => body.append(k, data[k]));
@@ -25,6 +40,14 @@ function fetchPost(url, data, method = 'POST', credentials = 'same-origin') {
   });
 }
 
+/**
+ * This class encapsulates data related to a specific school order.
+ * Each school order should contain multiple 'items'. Each item
+ * corresponds to a specifc product.
+ * Each product order has a set of checks to be performed and a specific amount of 'units'.
+ * Each unit (encapsulated in objects of type `Unit`) has a specific identifier, description,
+ * and check state.
+ */
 class Order {
 
   id = null;
@@ -39,42 +62,60 @@ class Order {
   sstt = '';
   items = [];
   summary = null;
+  // Random client ID, used to identify own socket messages
   client = (Math.floor(Math.random() * 0x100000000) + 0x100000000).toString(16).substr(1).toUpperCase();
   socket = null;
 
+  /**
+   * Performs a serie of `fetch` queries to the API, returning a promise that resolves on a new `Order` object
+   * @param {string} centre 
+   * @param {string} campanya 
+   */
   static fetchOrder(centre, campanya) {
+    // Prepare an empty Order object
     const order = new Order();
+    // Fetch main order data
     return fetchPost(`${API_ROOT}/comandes/`, { centre, campanya })
       .then(handleErrors)
       .then(response => response.json())
       .then(orders => {
         if (!orders || orders.length === 0)
           throw (new Error(`El centre ${centre} no existeix o no té cap dotació en curs.`));
+          // Fill the `order` object with fetched data
         return Object.assign(order, orders[0]);
       })
+      // Fetch data of products related to this order
       .then(() => fetchPost(`${API_ROOT}/productes/`, { comanda: order.id }))
       .then(handleErrors)
       .then(response => response.json())
       .then(products => {
+        // Fill order.items with specific product data (no units yet!)
         order.items = [...products];
       })
+      // Fetch data for all units related to this order
       .then(() => fetchPost(`${API_ROOT}/unitats/`, { comanda: order.id }))
       .then(handleErrors)
       .then(response => response.json())
       .then(units => {
+        // Create the array of Unit objects for each product
         order.items.forEach(it => {
           it.productStatus = 0;
           it.units = units.filter(u => u.producte === it.id).map(u => Unit.createUnit(u, it));
         });
+        // Update global data and subscribe to external updates
         order.updateSummary();
         order.subscribeToUpdates();
         return order;
       })
   }
 
+  /**
+   * Connect this Order object to the socket server and wait for possible updates
+   * from other clients.
+   */
   subscribeToUpdates() {
     console.log(`Client ID: ${this.client}`);
-    // TODO: Catch socket errors?
+    // TODO: Pass a secret token!
     this.socket = openSocket(`${SOCKET_SERVER}/${this.centre}?token=ABCDEF`);
     // Handle 'update unit' messages
     this.socket.on('update unit', (body, client) => {
@@ -93,15 +134,25 @@ class Order {
     });
   }
 
+  /**
+   * Find the Nth unit of a specific product
+   * @param {string} productId 
+   * @param {number} num 
+   */
   findUnit(productId, num) {
     const product = this.items.find(p => p.id === productId);
     return product && product.units.find(u => u.num === num);
   }
 
+  /**
+   * Updates the unit data on the database and
+   * notifies other possible clients that data has changed
+   * @param {Unit} unit - Object of type `Unit`
+   */
   updateUnit(unit) {
     const body = unit.getJSON();
     console.log(`Updating unit: ${body}`);
-    // Save changes to API
+    // Send a PATCH operation to the API
     return fetch(`${API_ROOT}/unitats/`, {
       method: 'PATCH',
       credentials: 'same-origin',
@@ -110,13 +161,17 @@ class Order {
       .then(Utils.handleFetchErrors)
       .then(response => response.json())
       .then(result => {
+        // Data successfully saved
         if (this.socket)
-          // Broadcast an 'update unit' message to all same school mates
+          // Broadcast an 'update unit' message to all mates subscribed to the same school
           this.socket.emit('update unit', body, this.client);
         return result;
       })
   }
 
+  /**
+   * Initializes the summary data
+   */
   initSummary() {
     this.summary = {
       products: { num: 0, done: 0, state: [0, 0, 0, 0] },
@@ -126,6 +181,9 @@ class Order {
     return this.summary;
   }
 
+  /**
+   * Updates the summary data. Called when any element is updated.
+   */
   updateSummary() {
     const { products, units, checks } = this.initSummary();
     this.items.forEach(product => {
@@ -150,6 +208,11 @@ class Order {
     return this.summary;
   }
 
+  /**
+   * Generates a [json2csv](https://github.com/zemirco/json2csv) object
+   * containing the data of all items and returns
+   * a string with the full CSV file content.
+   */
   csvExport() {
     const fields = [
       'PRODUCTE',
@@ -181,6 +244,10 @@ class Order {
     }, []));
   }
 
+  /**
+   * Generates a CSV file containing the data of all items.
+   * @param {string} fileName 
+   */
   csvExportToFile(fileName) {
     const blob = new Blob(['\uFEFF' + this.csvExport()], { type: 'text/csv;charset=utf-16;' });
     if (navigator.msSaveBlob) { // IE 10+
