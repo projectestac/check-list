@@ -8,17 +8,17 @@ To enable log messages, set also the __DEBUG__ variable
 
 ### Manual startup with HTTP/WS
 
-Launch server with only chklist messages:
+Launch the server with only chklist messages:
 ```bash
 $ SOCKET_PORT=8000 DEBUG=chklist node index.js
 ```
 
-Launch server with all debug messages:
+Launch the server with all debug messages:
 ```bash
 $ SOCKET_PORT=8000 DEBUG=* node index.js
 ```
 
-Launch server debugging to a file:
+Launch the server writting debug messages to a file:
 ```bash
 $ SOCKET_PORT=8000 DEBUG=chklist node index.js 2>>socket.log | cat
 ```
@@ -55,7 +55,7 @@ To automatically launch the socket service at server startup:
 # Globally install PM2 in your system:
 $ npm i -g pm2
 
-# Enter on the socketsrv directory, replacing 'path/to/socketsrv' with the real path on your system:
+# Go to the socketsrv directory, replacing 'path/to/socketsrv' with the real path on your system:
 $ cd path/to/socketsrv
 
 # Launch PM2 ('--env' can be 'production' or 'development'):
@@ -84,3 +84,4 @@ $ pm2 logs SocketSrv
 # Monitor services:
 $ pm2 monit
 ```
+
