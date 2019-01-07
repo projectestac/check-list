@@ -45,7 +45,7 @@ $ mkdir ./data/www/chklist
 $ cd ./data/www/chklist
 $ ln -s /absolute/path/to/check-list/.devilbox/data/www/chklist/htdocs .
 $ ln -s /absolute/path/to/check-list/socketsrv .
-$ ln -s /absolute/path/to/check-list/.devilbox/data/www/chklist/.devilbox
+$ ln -s /absolute/path/to/check-list/.devilbox/data/www/chklist/.devilbox .
 ```
 
 - You can then launch Devilbox. For the needs of this project, we will need just three services:
