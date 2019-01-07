@@ -1,0 +1,26 @@
+# IMPORTANT: The version must match the version of docker-compose.yml
+version: '2.1'
+
+################################################################################
+# SERVICES
+################################################################################
+services:
+
+  # ------------------------------------------------------------
+  # PHP / HHVM
+  # ------------------------------------------------------------
+  php:
+
+    volumes:
+      - ${HOME}/${HOST_PATH_RELATIVE_DATADIR}:${HOME}/${HOST_PATH_RELATIVE_DATADIR}:rw${MOUNT_OPTIONS}
+
+
+  # ------------------------------------------------------------
+  # Web Server
+  # ------------------------------------------------------------
+  httpd:
+
+    volumes:
+      - ${HOME}/${HOST_PATH_RELATIVE_DATADIR}:${HOME}/${HOST_PATH_RELATIVE_DATADIR}:rw${MOUNT_OPTIONS}
+
+

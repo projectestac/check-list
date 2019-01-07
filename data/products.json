@@ -1,0 +1,639 @@
+[
+  {
+    "id": "ST.LT2A.20.01.08.02D",
+    "desc": "Estació multimèdia - Dual",
+    "checks": [
+      "L'equip compta amb teclat i ratolí",
+      "Reproducció d'un vídeo musical d'Internet amb Linkat",
+      "Accés a les unitats P, S i T del servidor de centre, amb Linkat",
+      "Impressió d'un document amb Linkat",
+      "Reproducció d'un vídeo musical d'Internet amb Windows",
+      "Accés a les unitats P, S i T del servidor de centre, amb Windows",
+      "Impressió d'un document amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.02W",
+    "desc": "Estació multimèdia - Windows",
+    "checks": [
+      "L'equip compta amb teclat i ratolí",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.02L",
+    "desc": "Estació multimèdia - Linkat",
+    "checks": [
+      "L'equip compta amb teclat i ratolí",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.05",
+    "desc": "Targeta sense fils AC",
+    "checks": [
+      "En l'equip on s'ha instal·lat, reproducció d'un vídeo musical per Wi-Fi",
+      "Accés a les unitats P, S i T del servidor de centre per Wi-Fi",
+      "Impressió d'un document per Wi-Fi"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.06D",
+    "desc": "Equip Basic Tiny - Dual",
+    "checks": [
+      "L'equip compta amb teclat, ratolí i altaveus integrats",
+      "Reproducció d'un vídeo musical d'Internet amb Linkat",
+      "Accés a les unitats P, S i T del servidor de centre, amb Linkat",
+      "Impressió d'un document amb Linkat",
+      "Reproducció d'un vídeo musical d'Internet amb Windows",
+      "Accés a les unitats P, S i T del servidor de centre, amb Windows",
+      "Impressió d'un document amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.06W",
+    "desc": "Equip Basic Tiny - Windows",
+    "checks": [
+      "L'equip compta amb teclat, ratolí i altaveus integrats",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.06L",
+    "desc": "Equip Basic Tiny - Linkat",
+    "checks": [
+      "L'equip compta amb teclat, ratolí i altaveus integrats",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.07D",
+    "desc": "Equip Avançat Tiny - Dual",
+    "checks": [
+      "L'equip compta amb teclat, ratolí i altaveus integrats",
+      "Reproducció d'un vídeo musical d'Internet amb Linkat",
+      "Accés a les unitats P, S i T del servidor de centre, amb Linkat",
+      "Impressió d'un document amb Linkat",
+      "Reproducció d'un vídeo musical d'Internet amb Windows",
+      "Accés a les unitats P, S i T del servidor de centre, amb Windows",
+      "Impressió d'un document amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.07W",
+    "desc": "Equip Avançat Tiny - Windows",
+    "checks": [
+      "L'equip compta amb teclat, ratolí i altaveus integrats",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.07L",
+    "desc": "Equip Avançat Tiny - Linkat",
+    "checks": [
+      "L'equip compta amb teclat, ratolí i altaveus integrats",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.13",
+    "desc": "Replicador de ports per a portàtil amb càrrega USB-C",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.21",
+    "desc": "Monitor 21,5 polzades, amb altaveus",
+    "checks": [
+      "S'ha deixat correctament instal·lat en un ordinador en servei",
+      "S'escolta l'àudio en reproduir un vídeo musical"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.01.08.22",
+    "desc": "Monitor 21,5 polzades, sense altaveus",
+    "checks": [
+      "S'ha deixat correctament instal·lat en un ordinador en servei"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.05",
+    "desc": "Carro portàtils",
+    "checks": [
+      "El material s'ha lliurat en bon estat",
+      "Configuració del temporitzador d'acord amb el temps de càrrega recomanat pels dispositius",
+      "S'ha carregat la bateria d'un dispositiu"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.14D",
+    "desc": "Ordinador portàtil 15,6\" - Intel i5 - Dual",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet amb Linkat per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet amb Linkat per cable",
+      "Accés a les unitats P, S i T del servidor de centre, amb Linkat",
+      "Impressió d'un document amb Linkat",
+      "Reproducció d'un vídeo musical d'Internet amb Windows per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet amb Windows per cable",
+      "Accés a les unitats P, S i T del servidor de centre, amb Windows",
+      "Impressió d'un document amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.14W",
+    "desc": "Ordinador portàtil 15,6\" - Intel i5 - Windows",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet per cable",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.14L",
+    "desc": "Ordinador portàtil 15,6\" - Intel i5 - Linkat",
+    "checks": [
+      "La unitat de DVD reconeix correctament un CD/DVD",
+      "Reproducció d'un vídeo musical d'Internet per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet per cable",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.17W",
+    "desc": "Ordinador portàtil - lleuger 11,6\" - Windows",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet per cable",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.17L",
+    "desc": "Ordinador portàtil - lleuger 11,6\" - Linkat",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet per cable",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.18W",
+    "desc": "Ordinador portàtil 15,6\" - Intel Pentium - Windows",
+    "checks": [
+      "La unitat de DVD reconeix correctament un CD/DVD",
+      "Reproducció d'un vídeo musical d'Internet per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet per cable",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.18L",
+    "desc": "Ordinador portàtil 15,6\" - Intel Pentium - Linkat",
+    "checks": [
+      "La unitat de DVD reconeix correctament un CD/DVD",
+      "Reproducció d'un vídeo musical d'Internet per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet per cable",
+      "Accés a les unitats P, S i T del servidor de centre",
+      "Impressió d'un document"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.22",
+    "desc": "Tauleta IPAD",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.23",
+    "desc": "Tauleta Android Quad-Core 10,1\"",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.24",
+    "desc": "Tauleta Android Octa-Core 10,1\"",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.25",
+    "desc": "Estació de càrrega per a 15 Tauletes o 16 Ipads",
+    "checks": [
+      "El material s'ha lliurat en bon estat",
+      "Els dispositius carreguen la bateria en connectar-los a l'estació"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.41",
+    "desc": "Ordinador portàtil Chromebook 11,6\" + CMC",
+    "checks": [
+      "El dispositiu s'ha registrat en el domini G-Suite del centre",
+      "Reproducció d'un vídeo musical d'Internet",
+      "Zoom d'una pàgina web fent lliscar dos dits per la pantalla"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.03.45",
+    "desc": "Ordinador portàtil Chromebook 14\" no tàctil + CMC",
+    "checks": [
+      "El dispositiu s'ha registrat en el domini G-Suite del centre",
+      "Reproducció d'un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.01",
+    "desc": "Kit de projecció d'ultra curta distància",
+    "checks": [
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.02",
+    "desc": "Videoprojector d'ultra curta distància",
+    "checks": [
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.03",
+    "desc": "Eco-videoprojector de llarga distància",
+    "checks": [
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.04",
+    "desc": "Eco-videoprojector portàtil",
+    "checks": [
+      "La imatge d'un dispositiu connectat per VGA es projecta correctament",
+      "La imatge d'un dispositiu connectat per HDMI es projecta correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.05",
+    "desc": "Eco-videoprojector d'ultra curta distància",
+    "checks": [
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.06",
+    "desc": "Videoprojector d'ultra curta distància interactiu tàctil",
+    "checks": [
+      "L'equip s'ha subministrat amb un retolador interactiu",
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Linkat",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Windows",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Chromebook"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.10",
+    "desc": "Kit de projecció interactiu tàctil",
+    "checks": [
+      "L'equip s'ha subministrat amb un retolador interactiu",
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Linkat",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Windows",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Chromebook",
+      "Se sent l'àudio en reproduir un contingut multimèdia"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.11",
+    "desc": "Videoprojector d'ultra curta distància interactiu",
+    "checks": [
+      "L'equip s'ha subministrat amb un retolador interactiu",
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Linkat",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Windows",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Chromebook"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.12",
+    "desc": "Videoprojector llarga distància",
+    "checks": [
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.21",
+    "desc": "Pissarra tàctil",
+    "checks": [
+      "La imatge s'ajusta a les dimensions de la pantalla",
+      "La interactivitat de la pantalla funciona correctament amb Linkat",
+      "La interactivitat de la pantalla funciona correctament amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.22",
+    "desc": "Visualitzador de documents",
+    "checks": [
+      "Projecció correcta d'un objecte o document, amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.23",
+    "desc": "Suport regulable en alçada motoritzat",
+    "checks": [
+      "El panell es regula en alçada correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.30",
+    "desc": "Kit videoprojector d'ultra curta distància interactiu tàctil",
+    "checks": [
+      "L'equip s'ha subministrat amb un retolador interactiu",
+      "La imatge s'ajusta a les dimensions de la pantalla per VGA",
+      "La imatge s'ajusta a les dimensions de la pantalla per HDMI",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Linkat",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Windows",
+      "Es pot interactuar amb la pantalla mitjançant retolador, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.40",
+    "desc": "Panell Interactiu 65\" penjat a paret amb mòdul Android",
+    "checks": [
+      "El mòdul Android s'ha actualitzat a la darrera versió",
+      "S'ha instal·lat Google Play amb el compte d'un usuari del centre",
+      "S'ha instal·lat una aplicació des de Google Play",
+      "La interactivitat de la pantalla funciona correctament amb 10 tocs simultanis amb el mòdul Android",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Linkat",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Windows",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.41",
+    "desc": "Panell Interactiu 65\" amb peu mòbil i mòdul Android",
+    "checks": [
+      "Les rodes del suport es poden ancorar i desancorar",
+      "El mòdul Android s'ha actualitzat a la darrera versió",
+      "S'ha instal·lat Google Play amb el compte d'un usuari del centre",
+      "S'ha instal·lat una aplicació des de Google Play",
+      "La interactivitat de la pantalla funciona correctament amb 10 tocs simultanis amb el mòdul Android",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Linkat",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Windows",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.43",
+    "desc": "Panell Interactiu 4K 75\" penjat a paret amb mòdul Android",
+    "checks": [
+      "El mòdul Android s'ha actualitzat a la darrera versió",
+      "S'ha instal·lat Google Play amb el compte d'un usuari del centre",
+      "S'ha instal·lat una aplicació des de Google Play",
+      "La interactivitat de la pantalla funciona correctament amb 10 tocs simultanis amb el mòdul Android",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Linkat",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Windows",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.44",
+    "desc": "Panell Interactiu 4K 75\" amb peu i mòdul Android",
+    "checks": [
+      "Les rodes del suport es poden ancorar i desancorar",
+      "El mòdul Android s'ha actualitzat a la darrera versió",
+      "S'ha instal·lat Google Play amb el compte d'un usuari del centre",
+      "S'ha instal·lat una aplicació des de Google Play",
+      "La interactivitat de la pantalla funciona correctament amb 10 tocs simultanis amb el mòdul Android",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Linkat",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Windows",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.45",
+    "desc": "Suport regulable i inclinable motoritzat per a panell interactiu",
+    "checks": [
+      "El panell es regula en alçada correctament",
+      "El panell es pot inclinar fins posar-lo en posició horitzontal"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.05.01",
+    "desc": "Impressora 3D Witbox Go",
+    "checks": [
+      "S'ha imprès un petit objecte 3D des d'un ordinador amb Wi-Fi des de Linkat",
+      "S'ha imprès un petit objecte 3D des d'un ordinador amb Wi-Fi des de Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.05.02",
+    "desc": "Impressora 3D avançada",
+    "checks": [
+      "S'ha imprès un petit objecte 3D amb el programa 'Cura' des de Linkat",
+      "S'ha imprès un petit objecte 3D amb el programa 'Cura' des de Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.01",
+    "desc": "Kit robòtica BQ primària",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.02",
+    "desc": "Kit robòtica BQ secundària",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.03",
+    "desc": "Bee-bot - 1 element",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.04",
+    "desc": "Base de càrrega per a Bee-bots",
+    "checks": [
+      "La bateria del Bee-Bot es carrega quan es connecta a la base"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.06",
+    "desc": "Pack Lego Education Wedo 2.0 Bluetooth amb bateria",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.08",
+    "desc": "Set Lego Mindstorm Education EV3",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.06.10",
+    "desc": "Arduino Starter Kit",
+    "checks": [
+      "El material s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.01",
+    "desc": "Teclat tecles grans Titán",
+    "checks": [
+      "El teclat funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.02",
+    "desc": "Teclat amb cobertor",
+    "checks": [
+      "El teclat funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.03",
+    "desc": "Ratolí bola gran",
+    "checks": [
+      "El ratolí funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.04",
+    "desc": "Ratolí bola petita",
+    "checks": [
+      "El ratolí funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.05",
+    "desc": "Ratolí tipus Joystick",
+    "checks": [
+      "El ratolí funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.06",
+    "desc": "Ratolí adaptat",
+    "checks": [
+      "El ratolí funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.07",
+    "desc": "Commutador petit",
+    "checks": [
+      "El commutador funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.08",
+    "desc": "Commutador gran (Jelly Bean)",
+    "checks": [
+      "El commutador funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.09",
+    "desc": "Commutador step by step",
+    "checks": [
+      "El commutador funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.10",
+    "desc": "Bucle magnètic",
+    "checks": [
+      "El bucle s'ha lliurat en bon estat"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.11",
+    "desc": "Ratolí infraroig",
+    "checks": [
+      "El ratolí funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.12",
+    "desc": "Monitor multitàctil 23\"",
+    "checks": [
+      "S'ha deixat correctament instal·lat en un ordinador en servei",
+      "La interactivitat de la pantalla funciona correctament",
+      "Se sent l'àudio en reproduir un contingut multimèdia"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.07.13",
+    "desc": "Teclat tecles grans Clevy inalàmbric",
+    "checks": [
+      "El teclat funciona correctament"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.08.01",
+    "desc": "Servei de Manteniment - Ordinadors Portàtils",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet amb Linkat per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet amb Linkat per cable",
+      "Accés a les unitats P, S i T del servidor de centre, amb Linkat",
+      "Reproducció d'un vídeo musical d'Internet amb Windows per Wi-Fi",
+      "Reproducció d'un vídeo musical d'Internet amb Windows per cable",
+      "Accés a les unitats P, S i T del servidor de centre, amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.08.02",
+    "desc": "Servei de Manteniment - Ordinadors de Sobretaula",
+    "checks": [
+      "Reproducció d'un vídeo musical d'Internet amb Linkat",
+      "Accés a les unitats P, S i T del servidor de centre, amb Linkat",
+      "Reproducció d'un vídeo musical d'Internet amb Windows",
+      "Accés a les unitats P, S i T del servidor de centre, amb Windows"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.08.03",
+    "desc": "Servei de Manteniment - Projectors",
+    "checks": [
+      "El projector funciona correctament"
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "name": "chklist-socket-server",
+  "version": "1.0.0",
+  "description": "Socket server for CheckList",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francesc Busquets <francesc@gmail.com>",
+  "license": "EUPL-1.2",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "socket.io": "^2.2.0"
+  }
+}
