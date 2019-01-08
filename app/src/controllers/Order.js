@@ -13,16 +13,6 @@ const SOCKET_PROTOCOL = process.env.REACT_APP_SOCKET_PROTOCOL || window.location
 const SOCKET_SERVER = `${SOCKET_PROTOCOL}//${SOCKET_HOST}:${SOCKET_PORT}`;
 
 /**
- * Generic error-catch function, used in Promises
- * @param {object} response 
- */
-function handleErrors(response) {
-  if (!response.ok)
-    throw Error(response.statusText);
-  return response;
-}
-
-/**
  * Builds a [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) promise
  * using URLSearchParams to format and encode the request body
  * @param {string} url 
@@ -76,17 +66,17 @@ class Order {
     const order = new Order();
     // Fetch main order data
     return fetchPost(`${API_ROOT}/comandes/`, { centre, campanya })
-      .then(handleErrors)
+      .then(Utils.handleFetchErrors)
       .then(response => response.json())
       .then(orders => {
         if (!orders || orders.length === 0)
           throw (new Error(`El centre ${centre} no existeix o no té cap dotació en curs.`));
-          // Fill the `order` object with fetched data
+        // Fill the `order` object with fetched data
         return Object.assign(order, orders[0]);
       })
       // Fetch data of products related to this order
       .then(() => fetchPost(`${API_ROOT}/productes/`, { comanda: order.id }))
-      .then(handleErrors)
+      .then(Utils.handleFetchErrors)
       .then(response => response.json())
       .then(products => {
         // Fill order.items with specific product data (no units yet!)
@@ -94,7 +84,7 @@ class Order {
       })
       // Fetch data for all units related to this order
       .then(() => fetchPost(`${API_ROOT}/unitats/`, { comanda: order.id }))
-      .then(handleErrors)
+      .then(Utils.handleFetchErrors)
       .then(response => response.json())
       .then(units => {
         // Create the array of Unit objects for each product

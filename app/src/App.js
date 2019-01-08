@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
 
-// Theme
-import Utils from './utils/Utils';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -10,6 +8,7 @@ import color_primary from '@material-ui/core/colors/teal';  // was indigo (teal)
 import color_secondary from '@material-ui/core/colors/green';  // was pink (green)
 import color_error from '@material-ui/core/colors/red';
 
+import Utils from './utils/Utils';
 import Order from './controllers/Order';
 
 import Header from './components/Header';

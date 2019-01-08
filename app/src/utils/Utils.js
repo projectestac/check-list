@@ -27,5 +27,4 @@ function handleFetchErrors(response) {
   return response;
 }
 
-
-export default { loadGFont, handleFetchErrors }
+export default { loadGFont, handleFetchErrors };
