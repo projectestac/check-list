@@ -10,7 +10,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Divider from '@material-ui/core/Divider';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 
 /**
@@ -81,19 +80,17 @@ class Header extends React.Component {
             open={open}
           >
             <List>
-              <ListItem button onClick={this.handleDrawerClose}>
+              <ListItem component='li' divider button onClick={this.handleDrawerClose}>
                 <ListItemIcon>
                   <ChevronLeftIcon />
                 </ListItemIcon>
                 <ListItemText primary='Tanca el menú' />
               </ListItem>
-              <Divider />
-              <ListItem button onClick={() => this.handleClickOnItem('ResumBOX')}>
+              <ListItem component='li' divider button onClick={() => this.handleClickOnItem('ResumBOX')}>
                 <ListItemText primary='Resum' />
               </ListItem>
-              <Divider />
               {menuItems.map(item => (
-                <ListItem button key={item.id} onClick={() => this.handleClickOnItem(item.id)}>
+                <ListItem component='li' button key={item.id} onClick={() => this.handleClickOnItem(item.id)}>
                   <ListItemText primary={item.name} />
                 </ListItem>
               ))}
