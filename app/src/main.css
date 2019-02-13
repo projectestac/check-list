@@ -82,6 +82,13 @@ header .main-title {
   color: rgb(255, 40, 40);
 }
 
+.license {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 24rem;
+  font-size: 0.75rem;
+}
+
 /* === ChkList === */
 .main-list-box {
   padding: var(--theme-spacing-unit);

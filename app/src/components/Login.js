@@ -32,7 +32,7 @@ class Login extends React.Component {
     ev.preventDefault();
 
     // Check that the schhol code has 8 characters
-    if (this.state.centre.length !== 8) 
+    if (this.state.centre.length !== 8)
       return this.setState({ centre_err: true });
 
     // Check empty password
@@ -87,10 +87,10 @@ class Login extends React.Component {
             del Departament d'Educació.
           </p><p>
             <strong>AVÍS IMPORTANT:</strong><br />
-            Aquest assistent està en fase de proves i no té cap connexió directa amb els proveïdors de serveis.
-            Tingueu en compte que l'aplicació no es troba encara integrada en el conjunt d'aplicacions
+            Aquest assistent no té cap connexió directa amb els proveïdors de serveis.
+            Tingueu en compte que l'aplicació no es troba integrada en el conjunt d'aplicacions
             oficials del Departament d'Educació i no entra en els canals de suport del SAU. Per a qualsevol dubte o
-            incidència relacionada amb aquesta aplicació podeu escriure a: <a href="mailto:areatac.educacio@gencat.cat">areatac.educacio@gencat.cat</a>.
+            incidència relacionada amb aquesta aplicació podeu escriure a: <a href="mailto:culturadigital.educacio@gencat.cat">culturadigital.educacio@gencat.cat</a>.
           </p><p>
             La introducció de dades a l'assistent no substitueix la necessària signatura dels albarans de lliurament
             i prestació de serveis de les empreses subminstradores.
@@ -101,6 +101,11 @@ class Login extends React.Component {
             <strong>Mode de demostració:</strong><br />
             Per provar l'aplicació en mode de demostració podeu fer servir el centre <strong>12345678</strong> amb contrasenya <strong>demo</strong>.
           </p>
+          <div className='license'>
+            © 2019 Departament d'Educació de la Generalitat de Catalunya<br />
+            Codi font de l'aplicació disponible a <a href="https://github.com/projectestac/check-list">GitHub</a> sota els termes
+            de la Llicència Pública de la Unió Europea EUPL v. 1.2<br />
+          </div>
         </div>
       </div>
     );
