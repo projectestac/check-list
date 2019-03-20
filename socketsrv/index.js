@@ -10,15 +10,13 @@ const debug = require('debug')('chklist');
 const io = require('socket.io')();
 const PORT = process.env.SOCKET_PORT || 8080;
 const TOKEN = process.env.TOKEN || '';
-debug('Token is: "%s"', TOKEN);
 
-debug('Initializing socket.io server');
+debug('Initializing socket.io server with token "%s"', TOKEN);
 
 // Allow only authorized clients
 io.use((socket, next) => {
   const client = socket.handshake.query.client;
   const token = socket.handshake.query.token || '';
-  debug(token);
   const phpCookieMatch = (socket.handshake.headers.cookie || '').match(/PHPSESSID=(\w*)/);
   // TODO: Check for cookie validity!
   if (token === TOKEN && client && client.length === 8 && phpCookieMatch && phpCookieMatch.length && phpCookieMatch[1])
