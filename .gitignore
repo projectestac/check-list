@@ -15,6 +15,7 @@ node_modules/
 /data-prod
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local

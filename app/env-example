@@ -1,3 +1,5 @@
+# Rename this file to ".env"
+
 # See: https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
 
 REACT_APP_API_ROOT=../api
@@ -8,3 +10,6 @@ REACT_APP_UPDATE_INTERVAL=5000
 REACT_APP_SOCKET_HOST=
 REACT_APP_SOCKET_PORT=
 REACT_APP_SOCKET_PROTOCOL=
+
+# Token for socket.io
+TOKEN=DtKmi5qOjwfHmdI6U0PpBgYJgENrQsCC
