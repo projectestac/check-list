@@ -9,14 +9,19 @@
 const debug = require('debug')('chklist');
 const io = require('socket.io')();
 const PORT = process.env.SOCKET_PORT || 8080;
+const TOKEN = process.env.TOKEN || '';
+debug('Token is: "%s"', TOKEN);
 
 debug('Initializing socket.io server');
 
 // Allow only authorized clients
 io.use((socket, next) => {
+  const client = socket.handshake.query.client;
+  const token = socket.handshake.query.token || '';
+  debug(token);
   const phpCookieMatch = (socket.handshake.headers.cookie || '').match(/PHPSESSID=(\w*)/);
   // TODO: Check for cookie validity!
-  if (phpCookieMatch && phpCookieMatch.length && phpCookieMatch[1])
+  if (token === TOKEN && client && client.length === 8 && phpCookieMatch && phpCookieMatch.length && phpCookieMatch[1])
     return next();
   else {
     debug('Unauthorized connection attempt from: %s', socket.handshake.address);
@@ -26,16 +31,18 @@ io.use((socket, next) => {
 
 // Catch connections
 io.on('connection', socket => {
-  debug('Client connected on socket %s', socket.id);
-  socket.on('disconnecting', reason => debug('Socket %s disconnected because of %s', socket.id, reason));
+  const client = socket.handshake.query.client;
+  debug('Client %s connected', client);
+  socket.on('disconnecting', reason => debug('Client %s disconnected because of %s', client, reason));
 });
 
 // Assign connections to specific namespaces, based on numeric school IDs
 io.of(/^\/[0-9]+$/).on('connect', socket => {
   const nsp = socket.nsp;
-  debug('Client on socket %s joined namespace %s', socket.id, nsp.name);
+  const client = socket.handshake.query.client;
+  debug('Client %s joined namespace %s', client, nsp.name);
   // Catch 'update unit' messages:
-  socket.on('update unit', (body, client) => {
+  socket.on('update unit', (body) => {
     const data = JSON.parse(body);
     debug('Update received from %s for item %s of product %s', client, data.num, data.producte);
     nsp.emit('update unit', body, client);

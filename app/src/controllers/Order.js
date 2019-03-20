@@ -11,6 +11,7 @@ const SOCKET_HOST = process.env.REACT_APP_SOCKET_HOST || window.location.hostnam
 const SOCKET_PORT = process.env.REACT_APP_SOCKET_PORT || window.location.port;
 const SOCKET_PROTOCOL = process.env.REACT_APP_SOCKET_PROTOCOL || window.location.protocol;
 const SOCKET_SERVER = `${SOCKET_PROTOCOL}//${SOCKET_HOST}:${SOCKET_PORT}`;
+const SOCKET_TOKEN = process.env.REACT_APP_SOCKET_TOKEN || '';
 
 /**
  * Builds a [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) promise
@@ -104,9 +105,9 @@ class Order {
    * from other clients.
    */
   subscribeToUpdates() {
-    console.log(`Client ID: ${this.client}`);
+    console.log(`Socket client ID: ${this.client}`);
     // TODO: Pass a secret token!
-    this.socket = openSocket(`${SOCKET_SERVER}/${this.centre}?token=ABCDEF`);
+    this.socket = openSocket(`${SOCKET_SERVER}/${this.centre}?client=${this.client}&token=${SOCKET_TOKEN}`);
     // Handle 'update unit' messages
     this.socket.on('update unit', (body, client) => {
       // Discard own messages!
@@ -154,7 +155,7 @@ class Order {
         // Data successfully saved
         if (this.socket)
           // Broadcast an 'update unit' message to all mates subscribed to the same school
-          this.socket.emit('update unit', body, this.client);
+          this.socket.emit('update unit', body);
         return result;
       })
   }

@@ -11,13 +11,14 @@ module.exports = {
     watch: process.env.NODE_ENV === 'development',
     env: {
       SOCKET_PORT: 8000,
-      DEBUG: 'chklist'
+      DEBUG: 'chklist',
+      TOKEN: process.env.TOKEN,
     },
     env_production: {
-      NODE_ENV: 'production'
+      NODE_ENV: 'production',
     },
     env_development: {
-      NODE_ENV: 'development'
+      NODE_ENV: 'development',
     }
   }],
 };
