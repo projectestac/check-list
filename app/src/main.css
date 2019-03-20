@@ -97,6 +97,7 @@ header .main-title {
   max-width: 50rem;
 }
 
+
 /* === Product === */
 .product-box {
   padding: var(--theme-spacing-unit);
@@ -109,6 +110,16 @@ header .main-title {
 .product-box .product-icon {
   margin-bottom: var(--theme-spacing-unit);
 }
+
+@media screen and (max-width: 600px) {
+  .main-list-box {
+    padding: inherit;
+  }  
+  .product-box {
+    padding: inherit;
+  }  
+}
+
 
 /* === Unit === */
 .unit-box {

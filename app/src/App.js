@@ -189,6 +189,7 @@ class App extends Component {
       }))
         .then(keysProcessed => {
           keysProcessed.forEach(k => delete this.updateBuffer[k]);
+          this.snack.current.close();
         })
         .catch(err => {
           console.error(`ERROR: ${err}`);

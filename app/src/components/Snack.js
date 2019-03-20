@@ -21,31 +21,36 @@ class Snack extends React.Component {
     });
   }
 
+  close() {
+    if (this.state.open)
+      this.setState({ open: false });
+  }
+
   handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === 'clickaway')
       return;
-    }
-    this.setState({ open: false });
+    this.close();
   };
 
   render() {
     const { open, message } = this.state;
     return <SnackBar
       anchorOrigin={{
-        vertical: 'bottom',
+        vertical: 'top',
         horizontal: 'center',
       }}
       open={open}
       autoHideDuration={6000}
       onClose={this.handleClose}
       ContentProps={{
-        'aria-describedby': 'message-id',
+        'aria-describedby': 'snack-message-id',
+        'style': { 'background-color': '#FF0033', color: 'whitesmoke', 'font-weight': 'bold' }
       }}
-      message={<span id="message-id"><WarningIcon className="warning-icon"/>{message}</span>}
+      message={<span id="snack-message-id"><WarningIcon className="warning-icon" />{message}</span>}
       action={[
         <IconButton
           key="close"
-          aria-label="Close"
+          aria-label="Tanca"
           color="inherit"
           onClick={this.handleClose}
         >
