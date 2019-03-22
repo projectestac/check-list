@@ -10,9 +10,31 @@ const debug = require('debug')('chklist');
 const io = require('socket.io')();
 const PORT = process.env.SOCKET_PORT || 8080;
 const TOKEN = process.env.TOKEN || '';
-const dataBuffer = [];
+const dataStore = {};
 
 debug('Initializing socket.io server with token "%s"', TOKEN);
+
+function saveData(data, client) {
+  const { comanda, producte, num } = data;
+  const cm = dataStore[comanda] || {};
+  const pr = cm[producte] || {};
+  pr[num] = { time: Date.now(), client, data };
+  cm[producte] = pr;
+  dataStore[comanda] = cm;
+}
+
+function getChangesFor(comanda, since) {
+  const result = [];
+  const cm = dataStore[comanda] || {};
+  Object.keys(cm).forEach(kp => {
+    Object.keys(cm[kp]).forEach(ku => {
+      const unit = cm[kp][ku];
+      if (unit.time > since)
+        result.push(unit);
+    });
+  });
+  return result;
+}
 
 // Allow only authorized clients
 io.use((socket, next) => {
@@ -45,14 +67,13 @@ io.of(/^\/[0-9]+$/).on('connect', socket => {
     .on('update unit', (body) => {
       const data = JSON.parse(body);
       // TODO: Flush buffer at regular intervals!
-      dataBuffer.push({ timestamp: new Date().getTime(), client, data });
+      saveData(data, client);
       debug('Update received from %s for item %s of product %s', client, data.num, data.producte);
       nsp.emit('update unit', body, client);
     })
-    .on('rewind', (comanda, since, fn) => {
-      debug('Rewind request received from %s for %s since %s', client, comanda, new Date(since));
-      const sinceTimestamp = new Date().getTime() - since;
-      result = dataBuffer.filter(d => d.data.comanda === comanda && d.timestamp > sinceTimestamp);
+    .on('get last messages', (comanda, lapse, fn) => {
+      debug('Requested messages for the last %d seconds for %s ', lapse / 1000, comanda);
+      const result = getChangesFor(comanda, Date.now() - lapse);
       fn(JSON.stringify(result));
     });
 });

@@ -12,6 +12,7 @@ const SOCKET_PORT = process.env.REACT_APP_SOCKET_PORT || window.location.port;
 const SOCKET_PROTOCOL = process.env.REACT_APP_SOCKET_PROTOCOL || window.location.protocol;
 const SOCKET_SERVER = `${SOCKET_PROTOCOL}//${SOCKET_HOST}:${SOCKET_PORT}`;
 const SOCKET_TOKEN = process.env.REACT_APP_SOCKET_TOKEN || '';
+const ENV = process.env.NODE_ENV;
 
 /**
  * Builds a [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) promise
@@ -56,7 +57,7 @@ class Order {
   // Random client ID, used to identify own socket messages
   client = (Math.floor(Math.random() * 0x100000000) + 0x100000000).toString(16).substr(1).toUpperCase();
   socket = null;
-  disconnectedSince = null;
+  lastPing = null;
 
   /**
    * Performs a serie of `fetch` queries to the API, returning a promise that resolves on a new `Order` object
@@ -97,7 +98,9 @@ class Order {
         // Update global data and subscribe to external updates
         order.updateSummary();
         order.subscribeToUpdates();
-        window.theOrder=order;
+        // Set global variable `theOrder` for development
+        if (ENV === 'development')
+          window.theOrder = order;
         return order;
       })
   }
@@ -112,20 +115,17 @@ class Order {
     this.socket = openSocket(`${SOCKET_SERVER}/${this.centre}?client=${this.client}&token=${SOCKET_TOKEN}`);
 
     this.socket
+      .on('connect', () => {
+        console.log('Connected to the socket server');
+        this.onConnect()
+      })
       .on('reconnect', () => {
-        console.log('Reconnected to socket server.');
-        const delay = this.disconnectedSince ? new Date().getTime() - this.disconnectedSince : 0;
-        if (delay > 5000) {
-          // Disconnected for more than 5"
-          console.log('Requesting data since ', this.disconnectedSince);
-          this.requestSocketMessages(delay);
-        }
-        this.disconnectedSince = null;
+        console.log('Reconnected to the socket server');
+        this.onConnect();
       })
       .on('disconnect', (reason) => {
         console.log(`Disconnected of socket server because of: ${reason}`);
-        if (!this.disconnectedSince)
-          this.disconnectedSince = new Date().getTime();
+        this.lastPing = Date.now();
       })
       .on('update unit', (body, client) => {
         // Discard own messages!
@@ -133,9 +133,36 @@ class Order {
           const data = JSON.parse(body);
           this.updateUnitFromSocket(data, client);
         }
+        this.lastPing = Date.now();
+      })
+      .on('ping', () => {
+        this.lastPing = Date.now();
       });
   }
 
+  /**
+   * Handler called on `connect` and `reconnect` events
+   */
+  onConnect() {
+    const lapse = this.lastPing ? Date.now() - this.lastPing : 0;
+    if (lapse > 10000) {
+      // Disconnected for more than 10"
+      console.log(`Requesting changes recorded on the last ${lapse / 1000} seconds`);
+      this.socket.emit('get last messages', this.id, lapse, (result) => {
+        result = JSON.parse(result);
+        console.log(`Received ${result.length} data changes`);
+        if (result && result.length)
+          result.forEach(d => this.updateUnitFromSocket(d.data, d.client));
+      });
+    }
+    this.lastPing = Date.now();
+  }
+
+  /**
+   * Updates an unit data in memory, based on messages from the socket server
+   * @param {Object} data - The data chunk received with information about a unit
+   * @param {string} from - ID of the socket client where the change was generated
+   */
   updateUnitFromSocket(data, from) {
     const { comanda, producte, num } = data;
     const unit = comanda === this.id && this.findUnit(producte, num);
@@ -144,16 +171,7 @@ class Order {
       unit.updateContent(data);
     }
     else
-      console.error(`Received update for unknown item: ${comanda} - ${producte} - ${num}`);
-  }
-
-  requestSocketMessages(from) {
-    this.socket.emit('rewind', this.id, from, (result) => {
-      result = JSON.parse(result);
-      console.log('Requested data: ', result);
-      if (result && result.length)
-        result.forEach(d => this.updateUnitFromSocket(d.data, d.client));
-    });
+      console.error(`Received an update for an unknown item: ${comanda} - ${producte} - ${num}`);
   }
 
   /**
