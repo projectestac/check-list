@@ -75,8 +75,10 @@ class App extends Component {
       .then(Utils.handleFetchErrors)
       .then(response => response.json())
       .then(({ codi }) => {
-        if (codi)
+        if (codi) {
+          this.setState({ centre: codi, loading: true });
           return this.loadOrder(codi);
+        }
         this.setState({ loading: false });
         return false;
       })
@@ -99,7 +101,10 @@ class App extends Component {
     })
       .then(Utils.handleFetchErrors)
       .then(response => response.json())
-      .then(({ codi }) => this.loadOrder(codi))
+      .then(({ codi }) => {
+        this.setState({ centre: codi, loading: true });
+        return this.loadOrder(codi);
+      })
       .catch(error => {
         console.error(error);
         this.setState({ error: error.toString() });
@@ -110,7 +115,6 @@ class App extends Component {
    * Load order data for the current school and campaign
    */
   loadOrder = (codi) => {
-    this.setState({ centre: codi, loading: true });
     return Order.fetchOrder(codi, CAMPAIGN)
       .then((order) => {
         this.setState({ order, loading: false, loggedIn: true });

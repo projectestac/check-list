@@ -56,6 +56,7 @@ class Order {
   // Random client ID, used to identify own socket messages
   client = (Math.floor(Math.random() * 0x100000000) + 0x100000000).toString(16).substr(1).toUpperCase();
   socket = null;
+  disconnectedSince = null;
 
   /**
    * Performs a serie of `fetch` queries to the API, returning a promise that resolves on a new `Order` object
@@ -96,6 +97,7 @@ class Order {
         // Update global data and subscribe to external updates
         order.updateSummary();
         order.subscribeToUpdates();
+        window.theOrder=order;
         return order;
       })
   }
@@ -108,20 +110,49 @@ class Order {
     console.log(`Socket client ID: ${this.client}`);
     // TODO: Pass a secret token!
     this.socket = openSocket(`${SOCKET_SERVER}/${this.centre}?client=${this.client}&token=${SOCKET_TOKEN}`);
-    // Handle 'update unit' messages
-    this.socket.on('update unit', (body, client) => {
-      // Discard own messages!
-      if (client !== this.client) {
-        const data = JSON.parse(body);
-        const { comanda, producte, num } = data;
-        const unit = comanda === this.id && this.findUnit(producte, num);
-        if (unit) {
-          console.log(`Item ${producte}#${num} modified by ${client}`);
-          unit.updateContent(data);
+
+    this.socket
+      .on('reconnect', () => {
+        console.log('Reconnected to socket server.');
+        const delay = this.disconnectedSince ? new Date().getTime() - this.disconnectedSince : 0;
+        if (delay > 5000) {
+          // Disconnected for more than 5"
+          console.log('Requesting data since ', this.disconnectedSince);
+          this.requestSocketMessages(delay);
         }
-        else
-          console.error(`Received update for unknown item: ${comanda} - ${producte} - ${num}`);
-      }
+        this.disconnectedSince = null;
+      })
+      .on('disconnect', (reason) => {
+        console.log(`Disconnected of socket server because of: ${reason}`);
+        if (!this.disconnectedSince)
+          this.disconnectedSince = new Date().getTime();
+      })
+      .on('update unit', (body, client) => {
+        // Discard own messages!
+        if (client !== this.client) {
+          const data = JSON.parse(body);
+          this.updateUnitFromSocket(data, client);
+        }
+      });
+  }
+
+  updateUnitFromSocket(data, from) {
+    const { comanda, producte, num } = data;
+    const unit = comanda === this.id && this.findUnit(producte, num);
+    if (unit) {
+      console.log(`Item ${producte}#${num} modified by ${from}`);
+      unit.updateContent(data);
+    }
+    else
+      console.error(`Received update for unknown item: ${comanda} - ${producte} - ${num}`);
+  }
+
+  requestSocketMessages(from) {
+    this.socket.emit('rewind', this.id, from, (result) => {
+      result = JSON.parse(result);
+      console.log('Requested data: ', result);
+      if (result && result.length)
+        result.forEach(d => this.updateUnitFromSocket(d.data, d.client));
     });
   }
 

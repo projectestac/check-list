@@ -10,6 +10,7 @@ const debug = require('debug')('chklist');
 const io = require('socket.io')();
 const PORT = process.env.SOCKET_PORT || 8080;
 const TOKEN = process.env.TOKEN || '';
+const dataBuffer = [];
 
 debug('Initializing socket.io server with token "%s"', TOKEN);
 
@@ -40,11 +41,20 @@ io.of(/^\/[0-9]+$/).on('connect', socket => {
   const client = socket.handshake.query.client;
   debug('Client %s joined namespace %s', client, nsp.name);
   // Catch 'update unit' messages:
-  socket.on('update unit', (body) => {
-    const data = JSON.parse(body);
-    debug('Update received from %s for item %s of product %s', client, data.num, data.producte);
-    nsp.emit('update unit', body, client);
-  });
+  socket
+    .on('update unit', (body) => {
+      const data = JSON.parse(body);
+      // TODO: Flush buffer at regular intervals!
+      dataBuffer.push({ timestamp: new Date().getTime(), client, data });
+      debug('Update received from %s for item %s of product %s', client, data.num, data.producte);
+      nsp.emit('update unit', body, client);
+    })
+    .on('rewind', (comanda, since, fn) => {
+      debug('Rewind request received from %s for %s since %s', client, comanda, new Date(since));
+      const sinceTimestamp = new Date().getTime() - since;
+      result = dataBuffer.filter(d => d.data.comanda === comanda && d.timestamp > sinceTimestamp);
+      fn(JSON.stringify(result));
+    });
 });
 
 // Start server
