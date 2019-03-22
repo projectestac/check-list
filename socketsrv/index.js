@@ -10,10 +10,14 @@ const debug = require('debug')('chklist');
 const io = require('socket.io')();
 const PORT = process.env.SOCKET_PORT || 8080;
 const TOKEN = process.env.TOKEN || '';
+const CLEANUP_INTERVAL = process.env.CLEANUP_INTERVAL || 3600;
+
+// Object used to store processed transactions
 const dataStore = {};
 
 debug('Initializing socket.io server with token "%s"', TOKEN);
 
+// Save a new transaction into the store
 function saveData(data, client) {
   const { comanda, producte, num } = data;
   const cm = dataStore[comanda] || {};
@@ -23,18 +27,43 @@ function saveData(data, client) {
   dataStore[comanda] = cm;
 }
 
+// Get all stored transactions done after a specific timestamp in a specific order id
 function getChangesFor(comanda, since) {
   const result = [];
   const cm = dataStore[comanda] || {};
-  Object.keys(cm).forEach(kp => {
-    Object.keys(cm[kp]).forEach(ku => {
+  for (const kp in cm) {
+    for (const ku in cm[kp]) {
       const unit = cm[kp][ku];
       if (unit.time > since)
         result.push(unit);
-    });
-  });
+    }
+  }
   return result;
 }
+
+// Delete from the store items older than CLEANUP_INTERVAL seconds
+function clearStore() {
+  const deleteBefore = Date.now() - CLEANUP_INTERVAL * 1000;
+  let count = 0, deleted = 0;
+  for (const k in dataStore) {
+    const order = dataStore[k];
+    for (const ko in order) {
+      const product = order[ko];
+      for (const kp in product) {
+        count++;
+        if (product[kp].time < deleteBefore) {
+          delete product[kp];
+          deleted++;
+        }
+      }
+    }
+  }
+  if (deleted)
+    debug('Deleted %d old items of %d', deleted, count);
+}
+
+// Launch the cleanup interval
+setInterval(clearStore, CLEANUP_INTERVAL * 1000);
 
 // Allow only authorized clients
 io.use((socket, next) => {

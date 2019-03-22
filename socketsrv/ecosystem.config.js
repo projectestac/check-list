@@ -13,14 +13,17 @@ module.exports = {
       SOCKET_PORT: 8000,
       DEBUG: 'chklist',
       TOKEN: process.env.TOKEN,
+      CLEANUP_INTERVAL: process.env.CLEANUP_INTERVAL,
     },
     env_production: {
       NODE_ENV: 'production',
       TOKEN: process.env.TOKEN,
+      CLEANUP_INTERVAL: process.env.CLEANUP_INTERVAL,
     },
     env_development: {
       NODE_ENV: 'development',
       TOKEN: process.env.TOKEN,
+      CLEANUP_INTERVAL: process.env.CLEANUP_INTERVAL,
     }
   }],
 };
