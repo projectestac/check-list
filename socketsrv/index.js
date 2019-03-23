@@ -95,13 +95,12 @@ io.of(/^\/[0-9]+$/).on('connect', socket => {
   socket
     .on('update unit', (body) => {
       const data = JSON.parse(body);
-      // TODO: Flush buffer at regular intervals!
-      saveData(data, client);
       debug('Update received from %s for item %s of product %s', client, data.num, data.producte);
+      saveData(data, client);
       nsp.emit('update unit', body, client);
     })
     .on('get last messages', (comanda, lapse, fn) => {
-      debug('Requested messages for the last %d seconds for %s ', lapse / 1000, comanda);
+      debug('Client %s requested messages of the last %d seconds for %s ', client, lapse / 1000, comanda);
       const result = getChangesFor(comanda, Date.now() - lapse);
       fn(JSON.stringify(result));
     });
