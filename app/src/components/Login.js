@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import { name, version, repository, license } from '../../package.json';
 
 /**
  * Login page
@@ -102,9 +103,10 @@ class Login extends React.Component {
             Per provar l'aplicació en mode de demostració podeu fer servir el centre <strong>12345678</strong> amb contrasenya <strong>demo</strong>.
           </p>
           <div className='license'>
+            {name} v{version}<br />
             © 2019 Departament d'Educació de la Generalitat de Catalunya<br />
-            Codi font de l'aplicació disponible a <a href="https://github.com/projectestac/check-list">GitHub</a> sota els termes
-            de la Llicència Pública de la Unió Europea EUPL v. 1.2<br />
+            Codi font de l'aplicació disponible a <a href={repository.url}>GitHub</a> sota els termes
+            de la Llicència Pública de la Unió Europea {license}<br />
           </div>
         </div>
       </div>
