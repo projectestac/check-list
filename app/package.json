@@ -2,7 +2,7 @@
   "name": "check-list",
   "title": "Comprovació d'Equipaments TIC",
   "description": "Assistent per a la comprovació d'equipaments TIC",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "author": "Francesc Busquets <francesc@gmail.com>",
   "private": true,
   "homepage": ".",

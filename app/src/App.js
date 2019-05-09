@@ -193,14 +193,13 @@ class App extends Component {
       }))
         .then(keysProcessed => {
           keysProcessed.forEach(k => delete this.updateBuffer[k]);
+          this.processingBuffer = false;
           this.snack.current.close();
         })
         .catch(err => {
           console.error(`ERROR: ${err}`);
-          this.snack.current.show(`ATENCIÓ: La connexió està fallant. No s'estan desant els canvis!`);
-        })
-        .finally(() => {
           this.processingBuffer = false;
+          this.snack.current.show(`ATENCIÓ: La connexió està fallant. No s'estan desant els canvis!`);
         });
     }
   }
