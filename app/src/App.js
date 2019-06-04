@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { createMuiTheme } from '@material-ui/core/styles';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import color_primary from '@material-ui/core/colors/teal';  // was indigo (teal)
 import color_secondary from '@material-ui/core/colors/green';  // was pink (green)
 import color_error from '@material-ui/core/colors/red';
@@ -21,16 +21,18 @@ import Snack from './components/Snack';
 /**
  * Main Material-UI theme
  */
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: color_primary[500] },
-    secondary: { main: color_secondary[500] },
-    error: { main: color_error[500] },
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = responsiveFontSizes(
+  createMuiTheme({
+    palette: {
+      primary: { main: color_primary[500] },
+      secondary: { main: color_secondary[500] },
+      error: { main: color_error[500] },
+    },
+    typography: {
+      fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
+    },
+  })
+);
 
 /**
  * Miscellanous values taken from environment variables
@@ -171,7 +173,7 @@ class App extends Component {
    * Invoked when data related to some unit has been updated
    */
   handleUpdateUnit = (unit) => {
-    const {comanda, producte, num} = unit;
+    const { comanda, producte, num } = unit;
     const key = `${comanda}|${producte}|${num}`;
     // Store changes on buffer, to be processed at the next time interval
     this.updateBuffer[key] = unit;
@@ -187,7 +189,7 @@ class App extends Component {
     const { order } = this.state;
     if (keys.length && !this.processingBuffer) {
       this.processingBuffer = true;
-      Promise.all(keys.map(k => {        
+      Promise.all(keys.map(k => {
         return order.updateUnit(this.updateBuffer[k])
           .then(response => k);
       }))
@@ -218,7 +220,7 @@ class App extends Component {
 
     return (
       <CssBaseline>
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <header>
             <Header menuItems={menuItems} centre={centre} logout={centre && this.logout} />
           </header>
@@ -229,7 +231,7 @@ class App extends Component {
             <Login onLogin={this.checkLogin} />
           }</main>
           <Snack ref={this.snack} />
-        </MuiThemeProvider>
+        </ThemeProvider>
       </CssBaseline>
     );
   }

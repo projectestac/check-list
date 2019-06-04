@@ -53,9 +53,9 @@ class Unit extends React.Component {
       <ExpansionPanel className='unit-box' onChange={this.handlePanelEvent}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6' noWrap={true}>
-            {(unitStatus === 2 && <DoneAllIcon nativeColor='green' fontSize='inherit' className='state-icon' />) ||
-              (unitStatus === 1 && <DoneIcon nativeColor='orange' fontSize='inherit' className='state-icon' />) ||
-              (unitStatus === 3 && <ErrorIcon nativeColor='red' fontSize='inherit' className='state-icon' />) ||
+            {(unitStatus === 2 && <DoneAllIcon  className="state-icon, color-green" fontSize="inherit" />) ||
+              (unitStatus === 1 && <DoneIcon className="state-icon, color-orange" fontSize="inherit" />) ||
+              (unitStatus === 3 && <ErrorIcon className="state-icon, color-red" fontSize="inherit" />) ||
               <BlankIcon color='disabled' fontSize='inherit' className='state-icon' />} {id} {descripcio && descripcio.trim() && `(${descripcio.trim()})`}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -85,9 +85,10 @@ class Unit extends React.Component {
               error={unit.hasProblems()}
             />
             <Typography variant='h6' noWrap gutterBottom>Comprovacions:</Typography>
-            {checks.split('').map((chk, i) => <FormControlLabel
+            {checks.split('').map((chk, i) => <FormControlLabel            
               key={`${item.id}.${num}.${i}`}
               label={this.getCheckText(i)}
+              className="check-item"
               control={<Switch
                 checked={chk !== '0'}
                 onChange={this.handleChange(i)}

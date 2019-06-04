@@ -62,7 +62,7 @@ class Summary extends React.Component {
           <Typography variant='h5' noWrap>Resum</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          {expanded && <Grid container spacing={8}>
+          {expanded && <Grid container spacing={1}>
             <Grid item xs={8} xm={6}>Productes totalment comprovats: {products.done}&nbsp;/&nbsp;{products.num}</Grid>
             <Grid item xs={4} xm={6}>
               <GraphBar
