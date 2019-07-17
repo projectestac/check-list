@@ -2,12 +2,12 @@
 
 # See: https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
 
-REACT_APP_API_ROOT=../api
-REACT_APP_CAMPAIGN=TRGNOV18
+REACT_APP_API_ROOT="../api"
+REACT_APP_CAMPAIGN="TRGNOV18"
 REACT_APP_UPDATE_INTERVAL=5000
 
 # Defaults to window.location.hostname, port and protocol
 REACT_APP_SOCKET_HOST=
 REACT_APP_SOCKET_PORT=
 REACT_APP_SOCKET_PROTOCOL=
-REACT_APP_SOCKET_TOKEN=DtKmi5qOjwfHmdI6U0PpBgYJgENrQsCC
+REACT_APP_SOCKET_TOKEN="DtKmi5qOjwfHmdI6U0PpBgYJgENrQsCC"

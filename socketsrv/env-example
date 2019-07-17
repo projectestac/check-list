@@ -1,4 +1,9 @@
 # Rename this file to ".env"
-NODE_ENV=development
+
+# Start pm2 with:
+# pm2 start ecosystem.config.js --env production
+
+NODE_ENV="development"
+SOCKET_PORT=8080
 CLEANUP_INTERVAL=3600
-TOKEN=DtKmi5qOjwfHmdI6U0PpBgYJgENrQsCC
+TOKEN="DtKmi5qOjwfHmdI6U0PpBgYJgENrQsCC"
