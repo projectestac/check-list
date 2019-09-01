@@ -1,8 +1,8 @@
 # CheckList
 
-Utility to register standardized checks in ICT equipment.
+Utility to perform standardized checks in ICT equipment.
 
-CheckList is a [PWA](https://medium.freecodecamp.org/progressive-web-apps-101-the-what-why-and-how-4aa5e9065ac2) (_Progressive Web App_) used in Catalan public schools to register standardized checks in the delivery and installation of new ICT equipment.
+CheckList is a [PWA](https://medium.freecodecamp.org/progressive-web-apps-101-the-what-why-and-how-4aa5e9065ac2) (_Progressive Web App_) used in Catalan public schools to perform standardized checks in the process of delivery and installation of new ICT equipment.
 
 Demo site: https://met.xtec.cat/checklist<br>
 (school code: _12345678_ password: _demo_)
@@ -11,13 +11,13 @@ Demo site: https://met.xtec.cat/checklist<br>
 
 The scenario where the application is used has the following elements:
 
-- Each school has a unique ID (currently 8 numeric digits) and a password known only by the school officials.
+- Each school has a unique ID (currently formed by 8 numerical digits) and a password known only to the school principals.
 
-- The schools have had an allocation of points that allowed them to make a selection of products in a catalog of ICT equipment, based on their educational project. The products are delivered and installed in schools by supplier companies. At the time of installation, schools must check that everything works correctly and is well configured.
+- Schools have had an allocation of points that allowed them to make a selection of products in a catalog of ICT equipment, based on their educational project. The products are delivered and installed in schools by supplier companies. At the time of installation, schools must check that everything works correctly and is well configured.
 
 - Each ICT product type has a unique alphanumeric identifier and a specific set of tests to be carried out.
 
-- Several teachers of each school simultaneously perform the checks, using different devices.
+- Several people can simultaneously perform the tests at the ICT equipment of each school, using different devices.
 
 ### Main components
 
@@ -41,7 +41,7 @@ In addition to this, three more folders are provided:
 
 - [NodeJS](https://nodejs.org/) is needed to build the main application and launch the webSocket server. Linux users are advised to use the [official LTS repositories](https://github.com/nodesource/distributions/blob/master/README.md).
 
-- A [LAMP](https://en.wikipedia.org/wiki/LAMP_(software_bundle) environment providing Apache or Nginx, PHP and MySQL or MariaDB.
+- A [LAMP](https://en.wikipedia.org/wiki/LAMP_(software_bundle)) environment providing Apache or Nginx, PHP and MySQL or MariaDB.
 
 ### Setting up
 
@@ -117,4 +117,6 @@ This application uses the following open source components:
 - [Material UI](https://material-ui.com/) - React components that implement Google's Material Design
 - [Socket.IO](https://socket.io/) - Enables real-time, bidirectional and event-based communication
 - [json2csv](http://www.mircozeiss.com/json2csv/) - Converts json into csv
+- [PHP](https://php.net/) - Used on the backend API
+- [MySQL](https://dev.mysql.com/) - To store the collected data
 
