@@ -45,5 +45,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "workbox-build": "^4.3.1"
+  }
 }
