@@ -5,7 +5,8 @@
   "description": "Socket server for CheckList",
   "repository": {
     "type": "git",
-    "url": "https://github.com/projectestac/check-list"
+    "url": "https://github.com/projectestac/check-list",
+    "directory": "socketsrv"
   },
   "main": "index.js",
   "scripts": {
@@ -15,9 +16,9 @@
   "license": "EUPL-1.2",
   "dependencies": {
     "dotenv": "^8.1.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "eslint": "^6.4.0"
+    "eslint": "^6.5.1"
   }
 }
