@@ -427,7 +427,36 @@
     ]
   },
   {
+    "id": "ST.LT2A.20.02.04.48",
+    "desc": "Panell Interactiu 4K 75\" penjat a paret amb mòdul Android",
+    "checks": [
+      "El mòdul Android s'ha actualitzat a la darrera versió",
+      "S'ha instal·lat Google Play amb el compte d'un usuari del centre",
+      "S'ha instal·lat una aplicació des de Google Play",
+      "La interactivitat de la pantalla funciona correctament amb 10 tocs simultanis amb el mòdul Android",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Linkat",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Windows",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
     "id": "ST.LT2A.20.02.04.44",
+    "desc": "Panell Interactiu 4K 75\" amb peu i mòdul Android",
+    "checks": [
+      "Les rodes del suport es poden ancorar i desancorar",
+      "El mòdul Android s'ha actualitzat a la darrera versió",
+      "S'ha instal·lat Google Play amb el compte d'un usuari del centre",
+      "S'ha instal·lat una aplicació des de Google Play",
+      "La interactivitat de la pantalla funciona correctament amb 10 tocs simultanis amb el mòdul Android",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Linkat",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Windows",
+      "Zoom d'una pàgina web fent lliscar dos dits, amb Chromebook",
+      "Se sent l'àudio en reproduir un vídeo musical d'Internet"
+    ]
+  },
+  {
+    "id": "ST.LT2A.20.02.04.49",
     "desc": "Panell Interactiu 4K 75\" amb peu i mòdul Android",
     "checks": [
       "Les rodes del suport es poden ancorar i desancorar",
