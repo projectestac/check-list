@@ -2,7 +2,7 @@
 /* global importScripts */
 if ('function' === typeof importScripts) {
   importScripts(
-    'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
+    'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js'
   );
 
   // Catch possible "SKIP_WAITING" events
@@ -38,59 +38,71 @@ if ('function' === typeof importScripts) {
     const debug = url.searchParams.has('debug');
     workbox.setConfig({ debug });
 
+    // Import statements
+    const {
+      core: { setCacheNameDetails, clientsClaim },
+      precaching: { precacheAndRoute, createHandlerBoundToURL },
+      routing: { NavigationRoute, registerRoute },
+      strategies: { StaleWhileRevalidate, CacheFirst },
+      expiration: { ExpirationPlugin },
+      cacheableResponse: { CacheableResponsePlugin },
+    } = workbox;
+
     // Set a specific prefix for this SW, used in cache names
-    workbox.core.setCacheNameDetails({
+    setCacheNameDetails({
       prefix: 'chklist',
     });
 
+    // Take control immediatly
+    clientsClaim();
 
     // Take control immediatly (not needed)
     // workbox.core.clientsClaim();
 
-    // injection point for manifest files
-    workbox.precaching.precacheAndRoute([], {});
+    // Injection point for manifest files
+    precacheAndRoute(self.__WB_MANIFEST);
 
     // custom cache rules
-    workbox.routing.registerNavigationRoute(
-      // was '/index.html',
-      workbox.precaching.getCacheKeyForURL('./index.html'),
-      {
-        blacklist: [/^\/_/, /\/[^/]+\.[^/]+$/],
-      }
-    );
+
+    const handler = createHandlerBoundToURL('./index.html');
+    const navigationRoute = new NavigationRoute(handler, {
+      denylist: [/^\/_/, /\/[^/]+\.[^/]+$/],
+    });
+    registerRoute(navigationRoute);
 
     // Cache for images
-    workbox.routing.registerRoute(
+    registerRoute(
       /\.(?:png|gif|jpg|jpeg|svg)$/,
-      new workbox.strategies.CacheFirst({
+      new CacheFirst({
         cacheName: 'image-cache',
         plugins: [
-          new workbox.expiration.Plugin({
+          new ExpirationPlugin({
             maxEntries: 200,
             maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            purgeOnQuotaError: true,
           }),
         ],
       })
     );
 
     // Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
-    workbox.routing.registerRoute(
+    registerRoute(
       /^https:\/\/fonts\.googleapis\.com/,
-      new workbox.strategies.StaleWhileRevalidate({
+      new StaleWhileRevalidate({
         cacheName: 'google-fonts-stylesheets',
       })
     );
 
     // Cache the underlying font files with a cache-first strategy for 1 year.
-    workbox.routing.registerRoute(
+    registerRoute(
       /^https:\/\/fonts\.gstatic\.com/,
-      new workbox.strategies.CacheFirst({
+      new CacheFirst({
         cacheName: 'google-fonts-webfonts',
         plugins: [
-          new workbox.cacheableResponse.Plugin({
+          new CacheableResponsePlugin({
             statuses: [0, 200],
           }),
-          new workbox.expiration.Plugin({
+          new ExpirationPlugin({
             maxAgeSeconds: 60 * 60 * 24 * 365, // One year
             maxEntries: 30,
           }),
