@@ -1,7 +1,7 @@
 import Unit from './Unit';
 import { Parser } from 'json2csv';
 import openSocket from 'socket.io-client';
-import Utils from '../utils/Utils';
+import { handleFetchErrors } from '../utils/Utils';
 
 /**
  * Miscellaneous constants used in this class
@@ -69,7 +69,7 @@ class Order {
     const order = new Order();
     // Fetch main order data
     return fetchPost(`${API_ROOT}/comandes/`, { centre, campanya })
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(response => response.json())
       .then(orders => {
         if (!orders || orders.length === 0)
@@ -79,7 +79,7 @@ class Order {
       })
       // Fetch data of products related to this order
       .then(() => fetchPost(`${API_ROOT}/productes/`, { comanda: order.id }))
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(response => response.json())
       .then(products => {
         // Fill order.items with specific product data (no units yet!)
@@ -87,7 +87,7 @@ class Order {
       })
       // Fetch data for all units related to this order
       .then(() => fetchPost(`${API_ROOT}/unitats/`, { comanda: order.id }))
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(response => response.json())
       .then(units => {
         // Create the array of Unit objects for each product
@@ -111,7 +111,6 @@ class Order {
    */
   subscribeToUpdates() {
     console.log(`Socket client ID: ${this.client}`);
-    // TODO: Pass a secret token!
     this.socket = openSocket(`${SOCKET_SERVER}/${this.centre}?client=${this.client}&token=${SOCKET_TOKEN}`);
 
     this.socket
@@ -198,7 +197,7 @@ class Order {
       credentials: 'same-origin',
       body,
     })
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(response => response.json())
       .then(result => {
         // Data successfully saved

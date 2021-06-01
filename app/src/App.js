@@ -8,7 +8,7 @@ import color_primary from '@material-ui/core/colors/teal';  // was indigo (teal)
 import color_secondary from '@material-ui/core/colors/green';  // was pink (green)
 import color_error from '@material-ui/core/colors/red';
 
-import Utils from './utils/Utils';
+import { handleFetchErrors, loadGFont } from './utils/Utils';
 import Order from './controllers/Order';
 
 import Header from './components/Header';
@@ -74,7 +74,7 @@ class App extends Component {
       method: 'GET',
       credentials: 'same-origin',
     })
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(response => response.json())
       .then(({ codi }) => {
         if (codi) {
@@ -101,7 +101,7 @@ class App extends Component {
       credentials: 'same-origin',
       body: JSON.stringify({ codi, pwd })
     })
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(response => response.json())
       .then(({ codi }) => {
         this.setState({ centre: codi, loading: true });
@@ -136,7 +136,7 @@ class App extends Component {
       method: 'GET',
       credentials: 'same-origin',
     })
-      .then(Utils.handleFetchErrors)
+      .then(handleFetchErrors)
       .then(() => document.location.reload())
       .catch(error => {
         console.error(error);
@@ -149,7 +149,7 @@ class App extends Component {
    */
   componentDidMount() {
     // Load Google's "Roboto" font
-    Utils.loadGFont('Roboto');
+    loadGFont('Roboto');
     // Check if the current user is already logged in
     this.checkIfLoggedIn();
     // Prepare a warning message to be shown when leaving the app with unsaved data

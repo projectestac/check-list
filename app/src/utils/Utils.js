@@ -5,7 +5,7 @@ import FontFaceObserver from 'fontfaceobserver';
 /**
  * Asynchronous loading of Google fonts
  */
-function loadGFont(fontName = 'Roboto', weights = '300,400,500') {
+export function loadGFont(fontName = 'Roboto', weights = '300,400,500') {
   const link = document.createElement('link');
   link.href = `https://fonts.googleapis.com/css?family=${fontName}:${weights}`;
   link.rel = 'stylesheet';
@@ -21,10 +21,10 @@ function loadGFont(fontName = 'Roboto', weights = '300,400,500') {
  * Handle errors on fetch calls
  * @param {Object} response 
  */
-function handleFetchErrors(response) {
+export function handleFetchErrors(response) {
   if (!response.ok)
     throw Error(response.statusText || 'Error desconegut');
   return response;
 }
 
-export default { loadGFont, handleFetchErrors };
+// export default { loadGFont, handleFetchErrors };

@@ -2,7 +2,7 @@
   "name": "check-list",
   "title": "Comprovació d'Equipaments TIC",
   "description": "Assistent per a la comprovació d'equipaments TIC",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "author": "Francesc Busquets <francesc@gmail.com>",
   "private": true,
   "homepage": ".",
@@ -19,15 +19,15 @@
   ],
   "license": "EUPL-1.2",
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/styles": "^4.10.0",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/styles": "^4.11.4",
     "fontfaceobserver": "^2.1.0",
-    "json2csv": "^5.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "socket.io-client": "^2.3.0"
+    "json2csv": "^5.0.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "socket.io-client": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,6 +47,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "workbox-build": "^5.1.3"
+    "workbox-build": "^6.1.5"
   }
 }

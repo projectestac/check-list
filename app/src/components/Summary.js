@@ -3,9 +3,9 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import GraphBar from './GraphBar';
 import Typography from '@material-ui/core/Typography';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
@@ -57,11 +57,11 @@ class Summary extends React.Component {
     const barHeight = '1rem';
 
     return (
-      <ExpansionPanel className='summary-box' id='ResumBOX' onChange={this.handlePanelEvent} expanded={expanded}>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+      <Accordion className='summary-box' id='ResumBOX' onChange={this.handlePanelEvent} expanded={expanded}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h5' noWrap>Resum</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
           {expanded && <Grid container spacing={1}>
             <Grid item xs={8} xm={6}>Productes totalment comprovats: {products.done}&nbsp;/&nbsp;{products.num}</Grid>
             <Grid item xs={4} xm={6}>
@@ -105,8 +105,8 @@ class Summary extends React.Component {
               </Button>
             </Grid>
           </Grid>}
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     );
   }
 }

@@ -3,9 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DoneIcon from '@material-ui/icons/Done';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
@@ -50,15 +50,15 @@ class Unit extends React.Component {
     const { item, unit: { num, id, descripcio, problemes, checks, unitStatus }, unit } = this.props;
     const { expanded } = this.state;
     return (
-      <ExpansionPanel className='unit-box' onChange={this.handlePanelEvent}>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+      <Accordion className='unit-box' onChange={this.handlePanelEvent}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant='h6' noWrap={true}>
             {(unitStatus === 2 && <DoneAllIcon  className="state-icon, color-green" fontSize="inherit" />) ||
               (unitStatus === 1 && <DoneIcon className="state-icon, color-orange" fontSize="inherit" />) ||
               (unitStatus === 3 && <ErrorIcon className="state-icon, color-red" fontSize="inherit" />) ||
               <BlankIcon color='disabled' fontSize='inherit' className='state-icon' />} {id} {descripcio && descripcio.trim() && `(${descripcio.trim()})`}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
           {expanded && <div className='unit-details'>
             <TextField
               id='id'
@@ -95,8 +95,8 @@ class Unit extends React.Component {
               />}
             />)}
           </div>}
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     );
   }
 }
