@@ -1,11 +1,13 @@
 // Settings for [PM2 Runtime](https://github.com/Unitech/pm2)
 // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
 
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 module.exports = {
   apps : [{
     name: 'SocketSrv',
+    cwd: __dirname,
     script: './index.js',    
     autorestart: true,
     watch: process.env.NODE_ENV === 'development',
