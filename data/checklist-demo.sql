@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 02, 2019 at 08:09 PM
--- Server version: 8.0.2-dmr
--- PHP Version: 7.1.25
+-- Host: mysql
+-- Generation Time: Sep 22, 2021 at 10:58 AM
+-- Server version: 8.0.22
+-- PHP Version: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `centres` (
-  `codi` char(8) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `centre` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `localitat` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sstt` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pwd` char(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `codi` char(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `centre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `localitat` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sstt` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pwd` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -50,13 +49,13 @@ INSERT INTO `centres` (`codi`, `centre`, `localitat`, `sstt`, `pwd`) VALUES
 --
 
 CREATE TABLE `comandes` (
-  `id` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `campanya` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `centre` char(8) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `estat` int(3) NOT NULL DEFAULT '0',
+  `id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `campanya` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `centre` char(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estat` int NOT NULL DEFAULT '0',
   `inici` date DEFAULT NULL,
   `final` date DEFAULT NULL,
-  `observacions` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `observacions` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -73,9 +72,9 @@ INSERT INTO `comandes` (`id`, `campanya`, `centre`, `estat`, `inici`, `final`, `
 --
 
 CREATE TABLE `productes` (
-  `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcio` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `checks` varchar(6000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcio` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checks` varchar(6000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `since` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -162,13 +161,13 @@ INSERT INTO `productes` (`id`, `descripcio`, `checks`, `since`) VALUES
 --
 
 CREATE TABLE `unitats` (
-  `comanda` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `producte` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `num` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcio` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `problemes` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `checks` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `comanda` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `producte` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `num` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcio` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `problemes` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `checks` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
